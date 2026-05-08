@@ -1,77 +1,119 @@
 @font-face {
-	font-family: Inika;
+	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Inika-Bold.woff2") format("woff2"), url("../fonts/Inika-Bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-}
-@font-face {
-	font-family: Inika;
-	font-display: swap;
-	src: url("../fonts/Inika-Regular.woff2") format("woff2"), url("../fonts/Inika-Regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: Inter;
-	font-display: swap;
-	src: url("../fonts/Inter-Bold.woff2") format("woff2"), url("../fonts/Inter-Bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-}
-@font-face {
-	font-family: Inter;
-	font-display: swap;
-	src: url("../fonts/Inter-Light.woff2") format("woff2"), url("../fonts/Inter-Light.woff") format("woff");
+	src: url("../fonts/Firs-Light.woff2") format("woff2"), url("../fonts/Firs-Light.woff") format("woff");
 	font-weight: 300;
 	font-style: normal;
 }
 @font-face {
-	font-family: Inter;
+	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Inter-Black.woff2") format("woff2"), url("../fonts/Inter-Black.woff") format("woff");
+	src: url("../fonts/Firs-Black.woff2") format("woff2"), url("../fonts/Firs-Black.woff") format("woff");
 	font-weight: 900;
 	font-style: normal;
 }
 @font-face {
-	font-family: Inter;
+	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Inter-ExtraLight.woff2") format("woff2"), url("../fonts/Inter-ExtraLight.woff") format("woff");
-	font-weight: 200;
-	font-style: normal;
-}
-@font-face {
-	font-family: Inter;
-	font-display: swap;
-	src: url("../fonts/Inter-Regular.woff2") format("woff2"), url("../fonts/Inter-Regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: Inter;
-	font-display: swap;
-	src: url("../fonts/Inter-Medium.woff2") format("woff2"), url("../fonts/Inter-Medium.woff") format("woff");
+	src: url("../fonts/Firs-Medium.woff2") format("woff2"), url("../fonts/Firs-Medium.woff") format("woff");
 	font-weight: 500;
 	font-style: normal;
 }
 @font-face {
-	font-family: Inter;
+	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Inter-ExtraBold.woff2") format("woff2"), url("../fonts/Inter-ExtraBold.woff") format("woff");
-	font-weight: 800;
+	src: url("../fonts/Firs-Thin.woff2") format("woff2"), url("../fonts/Firs-Thin.woff") format("woff");
+	font-weight: 100;
 	font-style: normal;
 }
 @font-face {
-	font-family: Inter;
+	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Inter-SemiBold.woff2") format("woff2"), url("../fonts/Inter-SemiBold.woff") format("woff");
+	src: url("../fonts/Firs-Bold.woff2") format("woff2"), url("../fonts/Firs-Bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
+	src: url("../fonts/Firs-Regular.woff2") format("woff2"), url("../fonts/Firs-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Ricordi;
+	font-display: swap;
+	src: url("../fonts/Ricordi-Regular.woff2") format("woff2"), url("../fonts/Ricordi-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
+	src: url("../fonts/Firs-Semibold.woff2") format("woff2"), url("../fonts/Firs-Semibold.woff") format("woff");
 	font-weight: 600;
 	font-style: normal;
 }
 @font-face {
-	font-family: Inter;
+	font-family: Roboto;
 	font-display: swap;
-	src: url("../fonts/Inter-Thin.woff2") format("woff2"), url("../fonts/Inter-Thin.woff") format("woff");
+	src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: Roboto;
+	font-display: swap;
+	src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
 	font-weight: 100;
 	font-style: normal;
 }

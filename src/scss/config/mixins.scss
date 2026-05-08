@@ -7,6 +7,13 @@
     }
 }
 
+// !media
+@mixin media-min($width) {
+    @media (min-width: #{$width + '.98' + px}) {
+        @content;
+    }
+}
+
 // !:not (last-child)
 @mixin notLast() {
     &:not(:last-child) {

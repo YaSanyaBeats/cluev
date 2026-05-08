@@ -24,3 +24,229 @@ body {
     margin: 0 auto;
     height: 100%;
 }
+
+.text {
+    @each $size in $text-sizes {
+        &_#{$size} {
+            font-size: #{$size}px;
+        }
+    }
+
+    @media (max-width: #{$mobile}px) {
+        @each $size in $text-sizes {
+            &_mobile-#{$size} {
+                font-size: #{$size}px;
+            }
+        }
+    }
+
+    @each $pair in $text-fluid-pairs {
+        $max: nth($pair, 1);
+        $min: nth($pair, 2);
+        $range-vw: $laptop - $mobile;
+
+        &_#{$max}-#{$min} {
+            @if $max == $min {
+                font-size: #{$max}px;
+            } @else if $range-vw == 0 {
+                font-size: #{$max}px;
+            } @else {
+                font-size: clamp(
+                    #{$min}px,
+                    calc(
+                        #{$min}px + (#{$max} - #{$min}) * ((100vw - #{$mobile}px) / #{$range-vw})
+                    ),
+                    #{$max}px
+                );
+            }
+        }
+    }
+
+    &_title {
+        font-family: 'Ricordi', sans-serif;
+    }
+
+    &_alt {
+        font-family: 'Noto', sans-serif;
+    }
+}
+
+.p {
+    @each $size in $padding-sizes {
+        &_#{$size} {
+            padding: #{$size}px;
+        }
+    }
+    @media (max-width: #{$mobile}px) {
+        @each $size in $padding-sizes {
+            &_mobile-#{$size} {
+                padding: #{$size}px;
+            }
+        }
+    }
+
+    &t {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                padding-top: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    padding-top: #{$size}px;
+                }
+            }
+        }
+    }
+    &r {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                padding-right: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    padding-right: #{$size}px;
+                }
+            }
+        }
+    }
+    &b {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                padding-bottom: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    padding-bottom: #{$size}px;
+                }
+            }
+        }
+    }
+    &l {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                padding-left: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    padding-left: #{$size}px;
+                }
+            }
+        }
+    }
+}
+
+.m {
+    @each $size in $padding-sizes {
+        &_#{$size} {
+            margin: #{$size}px;
+        }
+    }
+    @media (max-width: #{$mobile}px) {
+        @each $size in $padding-sizes {
+            &_mobile-#{$size} {
+                margin: #{$size}px;
+            }
+        }
+    }
+
+    &t {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                margin-top: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    margin-top: #{$size}px;
+                }
+            }
+        }
+    }
+    &r {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                margin-right: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    margin-right: #{$size}px;
+                }
+            }
+        }
+    }
+    &b {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                margin-bottom: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    margin-bottom: #{$size}px;
+                }
+            }
+        }
+    }
+    &l {
+        @each $size in $padding-sizes {
+            &_#{$size} {
+                margin-left: #{$size}px;
+            }
+        }
+        @media (max-width: #{$mobile}px) {
+            @each $size in $padding-sizes {
+                &_mobile-#{$size} {
+                    margin-left: #{$size}px;
+                }
+            }
+        }
+    }
+}
+
+@include media-min($laptop) {
+    .show_laptop {
+        display: none !important;
+    }
+}
+
+@include media-min($tablet) {
+    .show_tablet {
+        display: none !important;
+    }
+}
+
+@include media-min($mobile) {
+    .show_mobile {
+        display: none !important;
+    }
+}
+
+@include media($laptop) {
+    .hidden_laptop {
+        display: none !important;
+    }
+}
+
+@include media($tablet) {
+    .hidden_tablet {
+        display: none !important;
+    }
+}
+
+@include media($mobile) {
+    .hidden_mobile {
+        display: none !important;
+    }
+}
