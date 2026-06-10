@@ -1,0 +1,173 @@
+.hero {
+    margin-top: -80px;
+    &_animation-flow {
+        .hero {
+            &__slide {
+                padding-bottom: 194px;
+            }
+            &__pagination-container {
+                bottom: 128px;
+            }
+        }
+    }
+    &__slider {
+        &_start {
+            .hero {
+                &__slide-container {
+                    align-items: start;
+                }
+                &__body {
+                    align-items: start;
+                }
+                &__subtitle {
+                    text-align: left;
+                }
+                &__title {
+                    text-align: left;
+                }
+                &__subhead {
+                    text-align: left;
+                }
+                &__pagination {
+                    left: 40px;
+                    transform: none;
+                }
+                &__pagination-container {
+                    justify-content: start;
+                }
+            }
+        }
+        
+    }
+    &__slide {
+        position: relative;
+        height: 100vh;
+        padding: 106px 0;
+        &.swiper-slide-active {
+            .hero {
+                &__body {
+                    & * {
+                        //opacity: 1 !important;
+                    }
+                }
+            }
+        }
+    }
+    &__slide-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+    }
+    &__media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    &__video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+    &__gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 3;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    &__body {
+        position: relative;
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & * {
+            opacity: 0;
+        }
+        // & * {
+        //     opacity: 0;
+        //     transform: translateY(100px);
+        //     transition: .5s;
+        //     &:nth-child(2) {
+        //         transition-delay: .3s;
+        //     }
+        //     &:nth-child(3) {
+        //         transition-delay: .5s;
+        //     }
+        //     &:nth-child(4) {
+        //         transition-delay: .7s;
+        //     }
+        //     &:nth-child(5) {
+        //         transition-delay: .9s;
+        //     }
+        //     &:nth-child(6) {
+        //         transition-delay: 1.1s;
+        //     }
+        // }
+    }
+    &__title {
+        color: white;
+        text-transform: uppercase;
+        margin: 0;
+        max-width: 640px;
+        text-align: center;
+    }
+    &__subtitle {
+        color: white;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        color: #FFFFFFB2;
+        text-align: center;
+    }
+    &__subhead {
+        color: white;
+        text-align: center;
+        margin-top: 16px;
+        line-height: 1.3;
+        max-width: 560px;
+    }
+    &__link {
+        color: white;
+        margin-top: 20px;
+        font-weight: 400;
+        &:hover {
+            color: white;
+        }
+    }
+    &__pagination-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 40px;
+        z-index: 3;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__pagination {
+        
+    }
+}

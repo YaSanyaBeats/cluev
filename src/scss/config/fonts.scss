@@ -1,29 +1,8 @@
 @font-face {
 	font-family: Firs;
 	font-display: swap;
-	src: url("../fonts/Firs-Light.woff2") format("woff2"), url("../fonts/Firs-Light.woff") format("woff");
-	font-weight: 300;
-	font-style: normal;
-}
-@font-face {
-	font-family: Firs;
-	font-display: swap;
 	src: url("../fonts/Firs-Black.woff2") format("woff2"), url("../fonts/Firs-Black.woff") format("woff");
 	font-weight: 900;
-	font-style: normal;
-}
-@font-face {
-	font-family: Firs;
-	font-display: swap;
-	src: url("../fonts/Firs-Medium.woff2") format("woff2"), url("../fonts/Firs-Medium.woff") format("woff");
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: Firs;
-	font-display: swap;
-	src: url("../fonts/Firs-Thin.woff2") format("woff2"), url("../fonts/Firs-Thin.woff") format("woff");
-	font-weight: 100;
 	font-style: normal;
 }
 @font-face {
@@ -36,8 +15,71 @@
 @font-face {
 	font-family: Firs;
 	font-display: swap;
+	src: url("../fonts/Firs-Semibold.woff2") format("woff2"), url("../fonts/Firs-Semibold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
+	src: url("../fonts/Firs-Medium.woff2") format("woff2"), url("../fonts/Firs-Medium.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
+	src: url("../fonts/Firs-Light.woff2") format("woff2"), url("../fonts/Firs-Light.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: Noto;
+	font-display: swap;
+	src: url("../fonts/Noto-Bold.woff2") format("woff2"), url("../fonts/Noto-Bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
 	src: url("../fonts/Firs-Regular.woff2") format("woff2"), url("../fonts/Firs-Regular.woff") format("woff");
 	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Noto;
+	font-display: swap;
+	src: url("../fonts/Noto-Medium.woff2") format("woff2"), url("../fonts/Noto-Medium.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: Noto;
+	font-display: swap;
+	src: url("../fonts/Noto-Light.woff2") format("woff2"), url("../fonts/Noto-Light.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: Firs;
+	font-display: swap;
+	src: url("../fonts/Firs-Thin.woff2") format("woff2"), url("../fonts/Firs-Thin.woff") format("woff");
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: Noto;
+	font-display: swap;
+	src: url("../fonts/Noto-Regular.woff2") format("woff2"), url("../fonts/Noto-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Noto;
+	font-display: swap;
+	src: url("../fonts/Noto-Semibold.woff2") format("woff2"), url("../fonts/Noto-Semibold.woff") format("woff");
+	font-weight: 600;
 	font-style: normal;
 }
 @font-face {
@@ -45,75 +87,5 @@
 	font-display: swap;
 	src: url("../fonts/Ricordi-Regular.woff2") format("woff2"), url("../fonts/Ricordi-Regular.woff") format("woff");
 	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: Firs;
-	font-display: swap;
-	src: url("../fonts/Firs-Semibold.woff2") format("woff2"), url("../fonts/Firs-Semibold.woff") format("woff");
-	font-weight: 600;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-	font-weight: 900;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-	font-weight: 800;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-	font-weight: 200;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-	font-weight: 300;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
-	font-weight: 600;
-	font-style: normal;
-}
-@font-face {
-	font-family: Roboto;
-	font-display: swap;
-	src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-	font-weight: 100;
 	font-style: normal;
 }

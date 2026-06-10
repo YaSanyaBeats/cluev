@@ -1,0 +1,78 @@
+.lookbook {
+    display: flex;
+    &_cover {
+        height: 100vh;
+    }
+    &__container {
+        display: flex;
+    }
+    &__col {
+        flex: 0 0 50%;
+        position: relative;
+        @include any-hover {
+            .lookbook {
+                &__card {
+                    filter: blur(0px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &__img {
+        width: 100%;
+        max-width: auto;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+    &__card {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        border: 1px solid #FFFFFF;
+        position: absolute;
+        width: 217px;
+        height: 276px;
+        padding: 16px 12px;
+        transform: translate(-50%, -37%);
+        opacity: 0;
+        filter: blur(10px);
+        transition: .4s;
+        &_flip {
+            justify-content: start;
+            transform: translate(-50%, -65%);
+        }
+    }
+    &__card-title {
+        color: white;
+    }
+    &__card-meta {
+        margin-top: 4px;
+        color: #FFFFFFB2;
+    }
+    &__card-link {
+        margin-top: 12px;
+        color: #FFFFFFB2;
+        &:hover {
+            color: #FFFFFFB2;
+            opacity: 1;
+        }
+    }
+    &__tooltip {
+        position: fixed;
+        z-index: 1000;
+        padding: 4px 8px;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        font-size: 12px;
+        line-height: 1.2;
+        border-radius: 4px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s;
+        white-space: nowrap;
+        &_visible {
+            opacity: 1;
+        }
+    }
+}

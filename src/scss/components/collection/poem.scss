@@ -1,0 +1,42 @@
+.poem {
+    
+    &__container {
+        
+    }
+    &__bg {
+        background-color: #F1EDE9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 64px;
+        padding: 96px 0;
+    }
+    &__content {
+        flex: 0 0 560px;
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+    &__text {
+        color: black;
+        text-transform: uppercase;
+        line-height: 1.33;
+    }
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+    &__meta {}
+    &__author {
+        color: black;
+    }
+    &__year {}
+    &__sign {
+        width: 200px;
+    }
+    &__media {}
+    &__img {
+        width: 300px;
+    }
+}

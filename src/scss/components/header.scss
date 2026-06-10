@@ -1,0 +1,46 @@
+.header {
+    min-height: 80px;
+    position: relative;
+    z-index: 10;
+    padding: 16px 0;
+    color: white;
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1 1 400px;
+    }
+    &__menu {
+
+    }
+    &__menu-btn { }
+    &__menu-icon { }
+    &__menu-img { }
+    &__link {
+        text-transform: uppercase;
+        color: white;
+    }
+    &__logo { }
+    &__logo-wrap { }
+    &__logo-mark { }
+    &__logo-icon { }
+    &__logo-name { }
+    &__logo-text { }
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 20px;
+        flex: 1 1 400px;
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+}

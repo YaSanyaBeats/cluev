@@ -1,0 +1,102 @@
+.contacts {
+    &__container {
+        display: flex;
+    }
+    &__item {
+        flex: 0 0 50%;
+        position: relative;
+        @include any-hover {
+            .contacts {
+                &__card {
+                    transform: none;
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+    }
+    &__media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &__overlay {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 51.09%, rgba(0, 0, 0, 0.0370738) 63.11%, rgba(0, 0, 0, 0.101067) 75.73%, rgba(0, 0, 0, 0.4) 94.06%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px;
+        aspect-ratio: 1;
+        position: relative;
+        z-index: 2;
+    }
+    &__city {
+        color: #FFFFFFCC;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        width: fit-content;
+        height: fit-content;
+        padding: 40px 40px 72px 40px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: .3s;
+        pointer-events: none;
+    }
+    &__card-inner {}
+    &__card-logo {}
+    &__card-logo-img {
+        color: black;
+    }
+    &__card-info {}
+    &__card-phone {
+        color: #404040;
+        margin-top: 40px;
+    }
+    &__card-email {
+        color: #404040;
+        margin-top: 8px;
+    }
+    &__card-btn {
+        margin-top: 30px;
+        min-width: 210px;
+        //border-color: #E5E5E5;
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    &__info-label {
+        color: #FFFFFFCC;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    &__info-address {
+        color: white;
+        text-align: center;
+        font-weight: 500;
+    }
+}

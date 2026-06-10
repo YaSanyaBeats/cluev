@@ -1,0 +1,54 @@
+.footer-decor {
+    height: 500px;
+    position: relative;
+    &__media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color: #00000066;
+    }
+    &__container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        height: 100%;
+    }
+    &__logo {
+        width: 82px;
+    }
+    &__text {
+        color: #FFFFFFCC;
+        max-width: 480px;
+        text-align: center;
+        line-height: 1.3;
+    }
+    &__link {
+        color: white;
+        &:hover {
+            color: white;
+        }
+    }
+}

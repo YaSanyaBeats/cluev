@@ -13,7 +13,7 @@ const html = () => {
     .pipe(plugins.handleError('HTML'))
     .pipe(fileInclude())
     .pipe(plugins.replace(/@img\//g, 'images/'))
-    .pipe(plugins.if(app.isBuild, webpHtml()))
+    //.pipe(plugins.if(app.isBuild, webpHtml()))
     .pipe(
       htmlMin({
         useShortDoctype: true,
@@ -41,5 +41,4 @@ const html = () => {
     .pipe(gulp.dest(filePaths.build.html))
     .pipe(plugins.browserSync.stream());
 };
-
 export { html };

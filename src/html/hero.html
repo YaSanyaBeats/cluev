@@ -1,58 +1,56 @@
-<section class="hero">
+<section class="hero hero_animation-flow">
     <div class="hero__slider swiper">
         <div class="swiper-wrapper">
             <div class="hero__slide swiper-slide">
-                <div class="hero__media">
-                    <img class="hero__img" src="static/hero-slide-1.jpg" alt="" width="1600" height="900" decoding="async" loading="eager">
-                    <div class="hero__gradient hero__gradient--top" aria-hidden="true"></div>
-                    <div class="hero__gradient hero__gradient--bottom" aria-hidden="true"></div>
-                </div>
-                <div class="hero__inner">
-                    <div class="hero__body">
-                        <h1 class="hero__title">Ювелирный дом Cluev</h1>
-                        <div class="hero__subhead">
-                            <p class="hero__subhead-line">Основан в 1998 году</p>
-                            <p class="hero__subhead-line">Превращаем самые важные истории в произведения ювелирного искусства</p>
-                        </div>
+                <div class="hero__slide-container container">
+                    <div class="hero__media">
+                        <video class="hero__video" src="static/hero.mp4" autoplay muted loop playsinline></video>
+                        <div class="hero__gradient"></div>
                     </div>
-                    <a class="hero__link" href="#">Перейти в каталог</a>
+                    <div class="hero__body">
+                        <h1 class="hero__title text_30">Ювелирный дом Cluev</h1>
+                        <div class="hero__subhead text_14">
+                            Основан в 1998 году<br>
+                            Превращаем самые важные истории в произведения ювелирного искусства
+                        </div>
+                        <a class="hero__link text_14 btn btn_link" href="#">перейти в каталог</a>
+                    </div>
                 </div>
             </div>
             <div class="hero__slide swiper-slide">
-                <div class="hero__media">
-                    <img class="hero__img" src="static/hero-slide-2.jpg" alt="" width="1600" height="900" decoding="async" loading="lazy">
-                    <div class="hero__gradient hero__gradient--top" aria-hidden="true"></div>
-                    <div class="hero__gradient hero__gradient--bottom" aria-hidden="true"></div>
-                </div>
-                <div class="hero__inner">
-                    <div class="hero__body">
-                        <h2 class="hero__title">Ювелирный дом Cluev</h2>
-                        <div class="hero__subhead">
-                            <p class="hero__subhead-line">Основан в 1998 году</p>
-                            <p class="hero__subhead-line">Превращаем самые важные истории в произведения ювелирного искусства</p>
-                        </div>
+                <div class="hero__slide-container container">
+                    <div class="hero__media">
+                        <img src="@img/hero2.png" class="hero__img">
+                        <div class="hero__gradient"></div>
                     </div>
-                    <a class="hero__link" href="#">Перейти в каталог</a>
+                    <div class="hero__body">
+                        <div class="hero__subtitle text_14 text_title">коллекции</div>
+                        <h2 class="hero__title text_30">Изделия достойные истинного джентльмена</h2>
+                        <div class="hero__subhead text_14">
+                            Выразить любовь можно тысячей разных способов, но самый трогательный из них – обменяться кольцами. Свадебная коллекция от Ювелирного дома CLUEV – это более 25 различных вариантов украшений для самого изысканного образа невесты.
+                        </div>
+                        <a class="hero__link text_14 btn btn_link" href="#">перейти в каталог</a>
+                    </div>
                 </div>
             </div>
             <div class="hero__slide swiper-slide">
-                <div class="hero__media">
-                    <img class="hero__img" src="static/hero-slide-3.jpg" alt="" width="1600" height="900" decoding="async" loading="lazy">
-                    <div class="hero__gradient hero__gradient--top" aria-hidden="true"></div>
-                    <div class="hero__gradient hero__gradient--bottom" aria-hidden="true"></div>
-                </div>
-                <div class="hero__inner">
-                    <div class="hero__body">
-                        <h2 class="hero__title">Ювелирный дом Cluev</h2>
-                        <div class="hero__subhead">
-                            <p class="hero__subhead-line">Основан в 1998 году</p>
-                            <p class="hero__subhead-line">Превращаем самые важные истории в произведения ювелирного искусства</p>
-                        </div>
+                <div class="hero__slide-container container">
+                    <div class="hero__media">
+                        <img src="@img/hero3.png" class="hero__img">
+                        <div class="hero__gradient"></div>
                     </div>
-                    <a class="hero__link" href="#">Перейти в каталог</a>
+                    <div class="hero__body">
+                        <h2 class="hero__title text_30">Помолвка. Свадьба</h2>
+                        <div class="hero__subhead text_14">
+                            Для момента, когда нужно сказать главное без слов.
+                        </div>
+                        <a class="hero__link text_14 btn btn_link" href="#">перейти в каталог</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hero__pagination swiper-pagination" aria-hidden="true"></div>
+        <div class="hero__pagination-container container">
+            <div class="hero__pagination pagination"></div>
+        </div>
     </div>
 </section>

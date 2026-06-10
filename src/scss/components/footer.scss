@@ -1,0 +1,96 @@
+.footer {
+    background-color: #0A0A0A;
+    position: relative;
+    z-index: 2;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+    }
+    &__nav {
+        display: flex;
+        gap: 20px;
+    }
+    &__column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 210px;
+        &_contacts {}
+    }
+    &__column-title {
+        color: #FFFFFF99;
+        text-transform: uppercase;
+    }
+    &__links {
+        color: white;
+        text-transform: uppercase;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    &__contacts {}
+    &__contacts-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    &__contacts-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    &__contacts-group-subtitle {
+        color: white;
+        text-transform: uppercase;
+    }
+    &__contacts-group-link {
+        color: white;
+        text-transform: uppercase;
+    }
+    &__logo-wrap {
+        display: flex;
+        justify-content: center;
+    }
+    &__logo {}
+    &__logo-img {
+        width: 82px;
+    }
+    &__bottom {
+        display: flex;
+        gap: 20px;
+    }
+    &__copyright {
+        min-width: 440px;
+    }
+    &__legal {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 20px;
+        flex-grow: 1;
+    }
+    &__credits {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    &__credits-text {}
+    &__credits-link {
+        color: white;
+        text-transform: uppercase;
+        &:hover {
+            color: white;
+        }
+    }
+}

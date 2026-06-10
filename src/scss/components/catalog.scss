@@ -1,0 +1,45 @@
+.catalog {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+    &__filter-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #171717;
+        padding: 20px 24px;
+        background-color: white;
+        border-radius: 4px;
+        transition: none !important;
+        &:hover {
+            color: #171717;
+            opacity: 1;
+        }
+        &.uk-active {
+            padding: 10px 24px;
+            box-shadow: 0px 4px 24px -2px #0a0d121c;
+        }
+    }
+    &__footer {
+        padding-top: 20px;
+        padding-bottom: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .product-card {
+        &__media {
+            aspect-ratio: 0.85;
+        }
+    }
+}

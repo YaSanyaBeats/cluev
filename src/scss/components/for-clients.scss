@@ -1,0 +1,103 @@
+.for-clients {
+    &__container {}
+    &__inner {
+        padding: 64px;
+        position: relative;
+        overflow: hidden;
+        background-color: black;
+    }
+    &__video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 0;
+        bottom: 0;
+        width: 1138px;
+        height: 100%;
+        transform: translate(-50%, 80px);
+        background: radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            red 100%
+        );
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, #00000080 40%, black 70%);
+            //background-color: #00000080;
+        }
+    }
+    &__video {
+        width: 100%;
+        object-fit: contain;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+    }
+    &__head {
+        display: flex;
+        gap: 20px;
+    }
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 490px;
+        width: 100%;
+    }
+    &__subtitle {
+        text-transform: uppercase;
+        color: #FFFFFFB2;
+    }
+    &__title {
+        margin: 0;
+        text-transform: uppercase;
+        color: white;
+    }
+    &__text {
+        max-width: 480px;
+        width: 100%;
+        color: #FFFFFFCC;
+        line-height: 1.3;
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+    &__item {
+        display: flex;
+        gap: 20px;
+        align-items: start;
+        padding: 20px 0;
+        border-top: 1px dashed #FFFFFF33;
+        &:last-child {
+            border-bottom: 1px dashed #FFFFFF33;
+        }
+    }
+    &__item-num {
+        max-width: 90px;
+        width: 100%;
+        color: #FFFFFFB2;
+    }
+    &__item-title {
+        max-width: 380px;
+        width: 100%;
+        color: white;
+    }
+    &__item-desc {
+        max-width: 560px;
+        width: 100%;
+        color: white;
+    }
+}

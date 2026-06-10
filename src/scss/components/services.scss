@@ -1,0 +1,73 @@
+.services {
+    &__container {
+        display: flex;
+    }
+    &__inner {}
+    &__media {
+        flex: 0 0 50%;
+    }
+    &__media-layer {
+    }
+    &__img {
+        aspect-ratio: 1;
+    }
+    &__content {
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 120px 64px;
+        
+    }
+    &__info-slide {
+    }
+    &__subtitle {
+        color: #737373;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    &__title {
+        margin: 12px 0 0 0;
+        color: #0A0A0A;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    &__text {
+        color: #404040;
+        text-align: center;
+        margin: 20px auto 0 auto;
+        max-width: 480px;
+        line-height: 1.3;
+    }
+    &__link {
+        margin: 24px auto 0 auto;
+    }
+    &__tabs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    &__tabs-item {
+        &.uk-active {
+            .services {
+                &__tab {
+                    color: #171717;
+                    border-color: #262626;
+                }
+            }
+        }
+    }
+    &__tab {
+        display: block;
+        color: #737373;
+        padding: 12px 0 6px 0;
+        border-bottom: 1px solid #E5E5E5;
+        text-transform: uppercase;
+        transition: .3s;
+        line-height: 1;
+        font-weight: 500;
+    }
+}

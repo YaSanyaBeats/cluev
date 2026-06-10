@@ -1,0 +1,91 @@
+.ambassador {
+    &__container {
+        display: flex;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        padding-right: 64px;
+        flex: 1 1 555px;
+    }
+    &__head {
+        display: flex;
+        flex-direction: column;
+    }
+    &__subtitle {
+        color: #737373;
+    }
+    &__title {
+        margin: 0;
+        color: #0A0A0A;
+    }
+    &__quote {
+        color: #404040;
+        line-height: 1.33;
+    }
+    &__author {}
+    &__author-text {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+    &__name {
+        text-transform: uppercase;
+        color: #0A0A0A;
+    }
+    &__role {
+        color: #737373;
+        margin-top: 4px;
+    }
+    &__signature-img {
+        width: 150px;
+        object-fit: contain;
+        margin-top: 20px;
+    }
+    &__media {
+        flex: 1 1 555px;
+        overflow: hidden;
+    }
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &__aside {
+        flex: 0 0 210px;
+        margin-left: 20px;
+        position: relative;
+    }
+    &__nav {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        transition: .3s;
+        &:hover {
+            opacity: .7;
+        }
+        &_up {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &_down {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    &__nav-icon {}
+    &__slider {
+        width: 100%;
+        height: 588px;
+        overflow: hidden;
+    }
+    &__slide {
+        padding-bottom: 4px;
+    }
+}

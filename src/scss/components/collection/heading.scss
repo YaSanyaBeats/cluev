@@ -1,0 +1,25 @@
+.heading {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    &__subtitle {
+        color: #737373;
+        text-transform: uppercase;
+    }
+    &__title {
+        text-align: center;
+        text-transform: uppercase;
+        color: #0A0A0A;
+        margin: 0;
+        max-width: 768px;
+    }
+    &__text {
+        max-width: 600px;
+        text-align: center;
+        color: #404040;
+        line-height: 1.3;
+    }
+}

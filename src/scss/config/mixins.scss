@@ -45,6 +45,10 @@
     }
 }
 
+@mixin scrollbar {
+    scrollbar-width: thin;
+}
+
 
 @mixin fluid($min, $max, $prop) {
     $addSize: $max - $min;

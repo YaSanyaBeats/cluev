@@ -1,309 +1,428 @@
 const isMobile = document.documentElement.clientWidth < 768;
 const isTablet = document.documentElement.clientWidth < 1140;
 
-function preloadAnimationAssets(section) {
-    const slides = section.querySelectorAll('.animation__slide');
-    const slideImages = section.querySelectorAll('.animation__slide img');
-    const urls = new Set();
+/* Последовательно накладывает класс на элементы внутри контейнера. */
+function staggeredClassAnimation(className, target, delay) {
+    let timeouts = [];
 
-    slides.forEach((slide) => {
-        const backgroundUrl = slide.dataset.bg;
-        if (backgroundUrl) {
-            urls.add(backgroundUrl);
-        }
-    });
+    return function ($container, $resetScope) {
+        timeouts.forEach(clearTimeout);
+        timeouts = [];
 
-    slideImages.forEach((image) => {
-        if (image.currentSrc || image.src) {
-            urls.add(image.currentSrc || image.src);
-        }
-    });
+        $resetScope.find(target).removeClass(className);
+        $container.find(target).removeClass(className);
 
-    const preloadPromises = Array.from(urls).map((url) => new Promise((resolve) => {
-        const image = new Image();
+        $container.find(target).each(function (index) {
+            const $element = $(this);
+            const timeoutId = setTimeout(function () {
+                $element.addClass(className);
+            }, index * delay);
 
-        image.onload = () => resolve();
-        image.onerror = () => resolve();
-        image.src = url;
-    }));
-
-    return Promise.allSettled(preloadPromises);
+            timeouts.push(timeoutId);
+        });
+    };
 }
 
-function initAnimationSlider() {
-    const section = document.querySelector('[data-animation]');
-    if (!section || typeof Swiper === 'undefined') {
-        return;
-    }
+function initSliders() {
+    window.swipers = {};
 
-    const sliderElement = section.querySelector('[data-animation-swiper]');
-    if (!sliderElement) {
-        return;
-    }
-
-    const backgroundLayers = section.querySelectorAll('[data-animation-bg-layer]');
-    const subtitleElement = section.querySelector('[data-animation-subtitle]');
-    const leftFeatureElement = section.querySelector('[data-animation-feature-left]');
-    const rightFeatureElement = section.querySelector('[data-animation-feature-right]');
-    const infoTitleElement = section.querySelector('[data-animation-info-title]');
-    const infoTextElement = section.querySelector('[data-animation-info-text]');
-    const paginationButtons = section.querySelectorAll('[data-animation-pagination-index]');
-
-    let activeBgLayerIndex = 0;
-    let bgTransitionToken = 0;
-
-    const normBgPath = (src) => {
-        if (!src) {
-            return '';
-        }
-
-        try {
-            const url = new URL(src, window.location.href);
-            return url.pathname.replace(/^\//, '');
-        } catch {
-            return src.replace(/^(\.\/)+/, '').replace(/^\//, '');
+    const defaultPaginationParams = (el) => {
+        return {
+            el: el,
+            clickable: true,
+            bulletClass: 'pagination__elem',
+            bulletActiveClass: 'pagination__elem_active',
+            modifierClass: 'pagination-',
+            renderBullet: function (index, className) {
+                return '<div class="' + className + '"></div>';
+            }
         }
     };
 
-    const pathsMatch = (a, b) => normBgPath(a) === normBgPath(b);
+    const animateHeroSlide = staggeredClassAnimation(
+        'uk-animation-slide-bottom-small',
+        '.hero__body > *',
+        200
+    );
 
-    const BG_BURST_MS = '0.34s';
-    const BG_REVEAL_MS = '0.4s';
-    const BG_EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
-    const BG_BLUR_PX = 8;
-    const BG_SCALE_X = 0.94;
-    const BG_TRANSITION_BURST = `filter ${BG_BURST_MS} ${BG_EASE}, transform ${BG_BURST_MS} ${BG_EASE}, opacity ${BG_BURST_MS} ${BG_EASE}`;
-    const BG_TRANSITION_REVEAL = `filter ${BG_REVEAL_MS} ${BG_EASE}, transform ${BG_REVEAL_MS} ${BG_EASE}, opacity ${BG_REVEAL_MS} ${BG_EASE}`;
+    // TODO Refactor
+    const HERO_IMAGE_DELAY = 5000;
 
-    const resetBgLayerInline = (layer) => {
-        layer.style.transition = 'none';
-        layer.style.filter = '';
-        layer.style.transform = '';
-        layer.style.opacity = '';
-    };
+    const heroSlideAutoplay = (function () {
+        let slideTimerId = null;
+        let swiperInstance = null;
 
-    const updateBackground = (nextBg, animate) => {
-        if (backgroundLayers.length < 2 || !nextBg) {
-            return;
+        function clearSlideTimer() {
+            if (slideTimerId !== null) {
+                clearTimeout(slideTimerId);
+                slideTimerId = null;
+            }
         }
 
-        const currentLayer = backgroundLayers[activeBgLayerIndex];
-        const incomingLayer = backgroundLayers[1 - activeBgLayerIndex];
-
-        if (!animate || pathsMatch(currentLayer.getAttribute('src'), nextBg)) {
-            backgroundLayers.forEach((layer) => {
-                resetBgLayerInline(layer);
-                layer.style.zIndex = '';
-                layer.setAttribute('src', nextBg);
+        function pauseAllVideos() {
+            clearSlideTimer();
+            $('.hero__slider .hero__video').each(function () {
+                this.pause();
+                $(this).off('.heroAutoplay');
             });
-            backgroundLayers[0].style.zIndex = '1';
-            backgroundLayers[0].style.opacity = '1';
-            backgroundLayers[1].style.zIndex = '0';
-            backgroundLayers[1].style.opacity = '0';
-            activeBgLayerIndex = 0;
-            requestAnimationFrame(() => {
-                backgroundLayers.forEach((layer) => {
-                    layer.style.transition = '';
+        }
+
+        function scheduleImageSlide() {
+            clearSlideTimer();
+            slideTimerId = setTimeout(function () {
+                if (swiperInstance) {
+                    swiperInstance.slideNext();
+                }
+            }, HERO_IMAGE_DELAY);
+        }
+
+        function startForActiveSlide() {
+            if (!swiperInstance) {
+                return;
+            }
+
+            clearSlideTimer();
+            pauseAllVideos();
+
+            const $activeSlide = $(swiperInstance.slides[swiperInstance.activeIndex]);
+            const $video = $activeSlide.find('.hero__video');
+
+            if ($video.length) {
+                const video = $video[0];
+                video.loop = false;
+                video.currentTime = 0;
+
+                $video.off('.heroAutoplay').on('ended.heroAutoplay', function () {
+                    swiperInstance.slideNext();
                 });
-            });
+
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(scheduleImageSlide);
+                }
+                return;
+            }
+
+            scheduleImageSlide();
+        }
+
+        return {
+            bind: function (swiper) {
+                swiperInstance = swiper;
+            },
+            start: startForActiveSlide,
+            pauseVideos: pauseAllVideos,
+        };
+    })();
+
+    window.swipers.hero = new Swiper('.hero__slider', {
+        loop: true,
+        pagination: defaultPaginationParams(".hero__pagination"),
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        on: {
+            init: function () {
+                heroSlideAutoplay.bind(this);
+                animateHeroSlide($(this.slides[this.activeIndex]), $(this.el));
+                heroSlideAutoplay.start();
+            },
+            slideChangeTransitionStart: function () {
+                heroSlideAutoplay.pauseVideos();
+                animateHeroSlide($(this.slides[this.activeIndex]), $(this.el));
+            },
+            slideChangeTransitionEnd: function () {
+                heroSlideAutoplay.start();
+            },
+            slideResetTransitionStart: function () {
+                heroSlideAutoplay.pauseVideos();
+                animateHeroSlide($(this.slides[this.activeIndex]), $(this.el));
+            },
+            slideResetTransitionEnd: function () {
+                heroSlideAutoplay.start();
+            },
+        },
+    });
+
+    window.swipers.productSlider = new Swiper('.product-slider__slider', {
+        slidesPerView: 'auto'
+    })
+
+    window.swipers.productCardGallery = [];
+    // TODO Refactor
+    document.querySelectorAll('.product-card__gallery').forEach(function (galleryEl) {
+        const swiper = new Swiper(galleryEl, {
+            slidesPerView: 1,
+            allowTouchMove: false,
+            speed: 300,
+            effect: 'fade',
+            pagination: {
+                el: galleryEl.querySelector('.product-card__gallery-pagination'),
+                clickable: true,
+                bulletClass: 'product-card__gallery-pagination-elem',
+                bulletActiveClass: 'product-card__gallery-pagination-elem_active',
+                modifierClass: 'product-card__gallery-pagination-',
+                renderBullet: function (index, className) {
+                    return '<div class="' + className + '"></div>';
+                },
+            },
+        });
+
+        window.swipers.productCardGallery.push(swiper);
+
+        const $card = $(galleryEl).closest('.product-card');
+
+        if (!$card.length || swiper.slides.length < 2) {
             return;
         }
 
-        const token = ++bgTransitionToken;
-
-        incomingLayer.style.zIndex = '0';
-        currentLayer.style.zIndex = '1';
-
-        resetBgLayerInline(incomingLayer);
-        resetBgLayerInline(currentLayer);
-        currentLayer.style.filter = 'blur(0)';
-        currentLayer.style.transform = 'scaleX(1)';
-        currentLayer.style.opacity = '1';
-        incomingLayer.style.opacity = '0';
-        currentLayer.style.transition = 'none';
-
-        requestAnimationFrame(() => {
-            if (token !== bgTransitionToken) {
-                return;
-            }
-
-            currentLayer.style.transition = BG_TRANSITION_BURST;
-
-            requestAnimationFrame(() => {
-                if (token !== bgTransitionToken) {
-                    return;
-                }
-
-                currentLayer.style.filter = `blur(${BG_BLUR_PX}px)`;
-                currentLayer.style.transform = `scaleX(${BG_SCALE_X})`;
-                currentLayer.style.opacity = '0';
-            });
+        $card.on('mouseenter', function () {
+            swiper.slideTo(1);
         });
 
-        const onPhase1End = (event) => {
-            if (event.propertyName !== 'filter' || token !== bgTransitionToken) {
+        $card.on('mouseleave', function () {
+            swiper.slideTo(0);
+        });
+    });
+
+    window.swipers.collectionsSlider = new Swiper('.collections__slider', {
+        slidesPerView: 'auto',
+        speed: 500,
+    })
+
+    window.swipers.ambassadorSlider = new Swiper('.ambassador__slider', {
+        slidesPerView: 2,
+        spaceBetween: 36,
+        direction: 'vertical',
+        navigation: {
+            prevEl: '.ambassador__nav_up',
+            nextEl: '.ambassador__nav_down',
+        },
+    })
+
+    window.swipers.catalogGridBigCardSlider = new Swiper('.catalog-grid__slider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: defaultPaginationParams('.catalog-grid__pagination'),
+    })
+}
+
+function initUiKit() {
+    UIkit.parallax($('.product-slider_animation-flow'), {
+        y: '-148, 0',
+        scale: '0.8, 1',
+        end: '100% + 100'
+    });
+
+    UIkit.parallax($('.product-slider__slider'), {
+        y: '-180, 0',
+        easing: -2,
+        end: '100% + 100'
+    });
+
+    UIkit.parallax($('.product-slider__item_bottom'), {
+        y: '-152, 0',
+        easing: -1,
+        end: '100%'
+    });
+
+    // -- Collection Tabs --
+    const $collectionHeroSlides = $('.collections__hero-slide');
+    const $collectionHero = $('.collections__hero');
+    const $collectionsSwitcherContent = $('.collections__switcher');
+    const $collectionTabs = $('.collections__tabs');
+
+    const collectionsSwitcher = UIkit.switcher($collectionTabs, {
+        connect: '.collections__switcher',
+        animation: 'uk-animation-fade',
+        duration: '800'
+    });
+
+    UIkit.util.on('.collections__switcher', 'beforehide', function () {
+        $collectionHero.addClass('collections__hero_switching');
+        setTimeout(() => {
+            $collectionHero.removeClass('collections__hero_switching');
+            $collectionsSwitcherContent.removeClass('collections__switcher_hidden');
+        }, 2500);
+
+        const index = collectionsSwitcher.index();
+
+        $collectionHeroSlides.removeClass('collections__hero-slide_active');
+        $collectionHeroSlides.eq(index).addClass('collections__hero-slide_active');
+        $collectionsSwitcherContent.addClass('collections__switcher_hidden');
+    });
+
+    // TODO Refactor
+    const $collectionsSection = $('.collections');
+    if ($collectionsSection.length) {
+        let collectionsRevealDone = false;
+
+        const revealCollections = function () {
+            if (collectionsRevealDone) {
                 return;
             }
 
-            currentLayer.removeEventListener('transitionend', onPhase1End);
-
-            incomingLayer.setAttribute('src', nextBg);
-            incomingLayer.style.transition = 'none';
-            incomingLayer.style.filter = `blur(${BG_BLUR_PX}px)`;
-            incomingLayer.style.transform = `scaleX(${BG_SCALE_X})`;
-            incomingLayer.style.opacity = '0';
-            incomingLayer.style.zIndex = '2';
-            currentLayer.style.zIndex = '0';
-
-            requestAnimationFrame(() => {
-                if (token !== bgTransitionToken) {
-                    return;
-                }
-
-                incomingLayer.style.transition = BG_TRANSITION_REVEAL;
-                incomingLayer.style.filter = 'blur(0)';
-                incomingLayer.style.transform = 'scaleX(1)';
-                incomingLayer.style.opacity = '1';
-
-                const onPhase2End = (ev) => {
-                    if (ev.propertyName !== 'filter' || token !== bgTransitionToken) {
-                        return;
-                    }
-
-                    incomingLayer.removeEventListener('transitionend', onPhase2End);
-
-                    activeBgLayerIndex = 1 - activeBgLayerIndex;
-
-                    resetBgLayerInline(currentLayer);
-                    currentLayer.style.zIndex = '0';
-                    currentLayer.style.opacity = '0';
-                    currentLayer.setAttribute('src', nextBg);
-
-                    resetBgLayerInline(incomingLayer);
-                    incomingLayer.style.zIndex = '1';
-                    incomingLayer.style.opacity = '1';
-
-                    requestAnimationFrame(() => {
-                        if (token !== bgTransitionToken) {
-                            return;
-                        }
-
-                        incomingLayer.style.transition = '';
-                        currentLayer.style.transition = '';
-                    });
-                };
-
-                incomingLayer.addEventListener('transitionend', onPhase2End);
-            });
+            collectionsRevealDone = true;
+            setTimeout(function () {
+                $collectionHero.removeClass('collections__hero_switching');
+                $collectionsSwitcherContent.removeClass('collections__switcher_hidden');
+            }, 2000);
         };
 
-        currentLayer.addEventListener('transitionend', onPhase1End);
-    };
+        const collectionsObserver = new IntersectionObserver(function (entries) {
+            $.each(entries, function (_, entry) {
+                if (entry.isIntersecting) {
+                    collectionsObserver.disconnect();
+                    revealCollections();
+                }
+            });
+        }, { threshold: 0.1 });
 
-    const setSectionContent = (activeSlide, options = {}) => {
-        if (!activeSlide) {
+        collectionsObserver.observe($collectionsSection[0]);
+    }
+    // -- End Collection Tabs --
+
+    UIkit.switcher($('.services__tabs'), {
+        connect: '.services__media, .services__info',
+        animation: 'uk-animation-fade',
+        duration: '300'
+    });
+
+    UIkit.offcanvas($('#modal-filter'), {
+        overlay: true,
+        flip: true
+    });
+
+    UIkit.sticky($('.catalog__filter-btn'), {
+        position: 'bottom',
+        start: '100vh + 60px',
+        end: true,
+        animation: 'uk-animation-slide-bottom'
+    });
+
+    // UIkit.util.on('.catalog__filter-btn', 'active', function () {
+    //     setTimeout(() => {
+    //         $('.catalog__filter-btn').addClass('catalog__filter-btn_active');
+    //     }, 300);
+    // })
+
+    // UIkit.util.on('.catalog__filter-btn', 'inactive', function () {
+    //     setTimeout(() => {
+    //         $('.catalog__filter-btn').removeClass('catalog__filter-btn_active');
+    //     }, 2000)
+    // })
+
+}
+
+function initSmoothScroll() {
+    new Lenis({
+        allowNestedScroll: true,
+        autoRaf: true,
+        anchors: true,
+        autoResize: true,
+        autoToggle: true,
+        naiveDimensions: true,
+        stopInertiaOnNavigate: true,
+        lerp: 0.1,
+    });
+}
+
+function initModalMenu() {
+    UIkit.offcanvas($('#modal-menu'), {
+        overlay: true
+    });
+    const $links = $('.modal-menu__nav-list a');
+    const $layouts = $('.modal-menu__expand-layout');
+    const $menu = $('.modal-menu');
+
+    UIkit.util.on('#modal-menu', 'beforehide', function () {
+        $menu.removeClass('modal-menu_expand');
+    });
+
+    $links.on('click', function (event) {
+        const index = $links.index(this);
+        const $layout = $layouts.eq(index);
+
+        if (!$layout.length) {
             return;
         }
 
-        const { animateBg = false } = options;
+        event.preventDefault();
+        console.log(index);
+        $links.removeClass('active');
+        $(this).addClass('active');
+        $layouts.removeClass('modal-menu__expand-layout_active');
+        $layout.addClass('modal-menu__expand-layout_active');
+        $menu.addClass('modal-menu_expand');
+    })
+}
 
-        const {
-            bg,
-            subtitle,
-            featureLeft,
-            featureRight,
-            infoTitle,
-            infoText
-        } = activeSlide.dataset;
+function initLookbookDebug() {
+    const $lookbook = $('.lookbook_debug');
 
-        updateBackground(bg, animateBg);
-
-        if (subtitleElement && subtitle) {
-            subtitleElement.textContent = subtitle;
-        }
-
-        if (leftFeatureElement && featureLeft) {
-            leftFeatureElement.textContent = featureLeft;
-        }
-
-        if (rightFeatureElement && featureRight) {
-            rightFeatureElement.textContent = featureRight;
-        }
-
-        if (infoTitleElement && infoTitle) {
-            infoTitleElement.textContent = infoTitle;
-        }
-
-        if (infoTextElement && infoText) {
-            infoTextElement.textContent = infoText;
-        }
-    };
-
-    const updatePaginationState = (index) => {
-        paginationButtons.forEach((button, buttonIndex) => {
-            button.classList.toggle('is-active', buttonIndex === index);
-        });
-    };
-
-    const firstSlide = sliderElement.querySelector('.animation__slide');
-    if (firstSlide) {
-        setSectionContent(firstSlide, { animateBg: false });
+    if (!$lookbook.length) {
+        return;
     }
 
-    preloadAnimationAssets(section).then(() => {
-        const animationSwiper = new Swiper(sliderElement, {
-            direction: 'vertical',
-            slidesPerView: 3,
-            centeredSlides: true,
-            spaceBetween: 12,
-            loop: false,
-            virtual: false,
-            speed: 620,
-            preventInteractionOnTransition: true,
-            mousewheel: {
-                enabled: true,
-                eventsTarget: '[data-animation]',
-                releaseOnEdges: true,
-                forceToAxis: true,
-                sensitivity: 0.9,
-                thresholdDelta: 14,
-                thresholdTime: 120
-            }
-        });
+    const $tooltip = $('<div class="lookbook__tooltip"></div>').appendTo('body');
 
-        let lastSlideIndex = animationSwiper.activeIndex;
+    const offsetX = 0;
+    const offsetY = 0;
 
-        const syncCurrentSlide = (opts = {}) => {
-            const { animateBg = false } = opts;
-            const slide = animationSwiper.slides[animationSwiper.activeIndex];
-            setSectionContent(slide, { animateBg });
-            updatePaginationState(animationSwiper.activeIndex);
-        };
+    function getLookbookCoords(col, event) {
+        const rect = col.getBoundingClientRect();
+        const x = (((event.clientX - rect.left - offsetX) / rect.width) * 100).toFixed(2);
+        const y = (((event.clientY - rect.top - offsetY) / rect.height) * 100).toFixed(2);
 
-        paginationButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                const targetIndex = Number(button.dataset.animationPaginationIndex);
+        return `${x}%, ${y}%`;
+    }
 
-                if (!Number.isNaN(targetIndex)) {
-                    animationSwiper.slideTo(targetIndex);
-                }
-            });
-        });
+    let copiedTimeoutId = null;
+    let isCopiedShown = false;
 
-        animationSwiper.on('slideChangeTransitionStart', () => {
-            const active = animationSwiper.activeIndex;
+    $lookbook.find('.lookbook__col').on('mousemove', function (event) {
+        if (!isCopiedShown) {
+            $tooltip.text(getLookbookCoords(this, event));
+        }
 
-            if (lastSlideIndex === active) {
-                return;
-            }
+        $tooltip.css({
+            left: event.clientX + 12,
+            top: event.clientY + 12,
+        }).addClass('lookbook__tooltip_visible');
+    });
 
-            lastSlideIndex = active;
-            syncCurrentSlide({ animateBg: true });
-        });
-        syncCurrentSlide({ animateBg: false });
+    $lookbook.find('.lookbook__col').on('click', function (event) {
+        event.preventDefault();
+
+        const coords = getLookbookCoords(this, event);
+
+        navigator.clipboard.writeText(coords);
+
+        clearTimeout(copiedTimeoutId);
+        isCopiedShown = true;
+
+        $tooltip.text('Скопировано!').css({
+            left: event.clientX + 12,
+            top: event.clientY + 12,
+        }).addClass('lookbook__tooltip_visible');
+
+        copiedTimeoutId = setTimeout(function () {
+            isCopiedShown = false;
+        }, 1000);
+    });
+
+    $lookbook.find('.lookbook__col').on('mouseleave', function () {
+        clearTimeout(copiedTimeoutId);
+        isCopiedShown = false;
+        $tooltip.removeClass('lookbook__tooltip_visible');
     });
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    initAnimationSlider();
+    initSliders();
+    initUiKit();
+    initSmoothScroll();
+    initModalMenu();
+    initLookbookDebug();
 })

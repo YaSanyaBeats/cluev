@@ -2,15 +2,10 @@
     box-sizing: border-box;
 }
 
-html, body {
-    overflow-x: hidden;
-}
-
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
 }
 
 .main {
@@ -213,6 +208,11 @@ body {
             }
         }
     }
+}
+
+.svg-stroke {
+    fill: none;
+    stroke: currentColor;
 }
 
 @include media-min($laptop) {

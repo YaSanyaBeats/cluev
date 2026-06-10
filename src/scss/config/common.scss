@@ -9,10 +9,129 @@ a {
 }
 
 body {
-    background-color: #F7F9FB;
     font-family: 'Firs', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ricordi', sans-serif;
+}
+
+.btn {
+    background-color: white;
+    border: 1px solid #0F0F0F;
+    color: #0F0F0F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+    text-align: center;
+    width: fit-content;
+    font-family: 'Noto', sans-serif;
+    line-height: 1;
+    gap: 8px;
+    font-weight: 500;
+    letter-spacing: 2%;
+    border-radius: 2px;
+    @include any-hover {
+        opacity: .7;
+    }
+    &_dark {
+        background-color: black;
+        color: white;
+        font-weight: 400;
+    }
+    &_transparent {
+        background-color: transparent;
+        color: white;
+        border-color: #FFFFFF33;
+        @include any-hover {
+            color: white;
+        }
+    }
+    &_transparent-dark {
+        background-color: transparent;
+        color: #171717;
+        border-color: #E5E5E5;
+        @include any-hover {
+            color: #171717;
+        }
+    }
+    &_link {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+        }
+    }
+}
+
+html {
+    @include scrollbar();
+}
+
+
+.scrollbar {
+    @include scrollbar();
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 320px;
+    &.swiper-pagination-lock {
+        display: none;
+    }
+    &__elem {
+        flex: 1 1 104px;
+        height: 2px;
+        background-color: #FFFFFF33;
+        transition: .3s;
+        cursor: pointer;
+        @include any-hover {
+            opacity: .7;
+        }
+        &_active {
+            background-color: white;
+        }
+    }
+}
+
+
+.uk-offcanvas-bar {
+    width: 480px;
+    left: -480px;
+    background-color: white;
+    color: #0F0F0F;
+    padding: 0;
+    a {
+        color: currentColor;
+        &:hover {
+            color: currentColor;
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: currentColor;
+    }
+}
+
+.uk-offcanvas-overlay::before {
+    background-color: #00000052;
+}
+
+.uk-offcanvas-flip {
+    .uk-offcanvas-bar {
+        right: -480px;
+    }
 }
