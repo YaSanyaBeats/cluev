@@ -1,0 +1,50 @@
+.boutique {
+    &__content-left {
+        padding: 6px 96px 6px 121px;
+    }
+    &__content-right {
+        padding: 6px 200px 6px 96px;
+    }
+    &__media {
+        height: 720px;
+    }
+    &__media img {
+        height: 100%;
+        width: auto;
+        max-width: none;
+    }
+    &__logo-dark {
+        margin-bottom: 67px;
+    }
+    &__logo-dark svg {
+        width: 109px;
+    }
+    &__logo-dark path {
+        fill: rgba(0, 0, 0, 1);
+    }
+    &__contacts {
+        color: rgba(0, 0, 0, 0.5);
+    }
+    &__town, &__address {
+        color: rgba(0, 0, 0, 1);
+    }
+    &__town {
+        margin-bottom: 45px;
+    }
+    &__address {
+        margin-top: 18px;
+        font-weight: 500;
+        margin-bottom: 45px;
+    }
+    &__phone {
+        margin-bottom: 18px;
+    }
+    &__btn {
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        padding: 9px 46px;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0;
+        margin-top: 67px;
+    }
+}
