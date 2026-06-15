@@ -1,0 +1,202 @@
+.history {
+    margin: 134px 0 0;
+
+    &__container {
+        display: flex;
+        justify-content: right;
+        padding-right: 170px;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 25px;
+        max-width: 322px;
+    }
+    &__media {
+        height: 400px;
+        max-width: 367px;
+        overflow: hidden;
+    }
+    &__media img {
+        height: 100%;
+    }
+    &__content-title {
+        line-height: 30px;
+        color: rgba(0, 0, 0, 1);
+    }
+    &__content-text {
+        margin-top: 21px;
+    }
+    &__content-text, &__content-subtitle {
+        line-height: 15.82px;
+        color: rgba(0, 0, 0, 1);
+    }
+    &__content-subtitle {
+        margin-top: 8px;
+    }
+
+    &__episode {
+        margin: 0 0 107px;
+    }
+    &__episode.content_right {
+        margin: 0 0 85px;
+    }
+    &__episode.content_left {
+        margin: 0 0 20px;
+    }
+    .content_left &__content-body {
+        padding-left: 134px;
+    }
+    &__episode-dates {
+        display: flex;
+        justify-content: center;
+        gap: 27px;
+        margin-top: 109px;
+    }
+    .content_right &__episode-dates {
+        margin-top: 237px;
+    }
+    .content_left &__episode-dates {
+        margin-top: 50px;
+    }
+    &__episode-date {
+        color: rgba(0, 0, 0, 0.3);
+        line-height: 28px;
+        letter-spacing: 0px;
+    }
+    &__episode-date.active {
+        color: rgba(0, 0, 0, 1);
+    }
+    &__episode-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 25.43px;
+    }
+    .content_right &__episode-content-next {
+        width: 24%;
+        padding-left: 49px;
+    }
+    .content_left &__episode-content-next {
+        width: 16%;
+        padding-left: 0px;
+        margin-top: 133px;
+        text-align: center;
+    }
+    &__episode-content-picture {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 50%;
+    }
+    .content_right &__episode-content-picture {
+        margin-top: 32px;
+        height: 158px;
+    }
+    .content_left &__episode-content-picture {
+        margin-top: 23px;
+        height: 133px;
+    }
+    &__episode-contnet-title {
+        margin-bottom: 10px;
+    }
+    &__episode-content-subtitle {
+        margin-bottom: 4px;
+    }
+    &__episode-content-date,
+    &__episode-contnet-title,
+    &__episode-content-subtitle {
+        padding: 0 11.61px;
+    }
+    &__episode-content-body {
+        align-self: center;
+        width: calc(75% - 31.43px);
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .content_left &__episode-content-body {
+        padding-left: 115px;
+        width: calc(60% - 31.43px);
+    }
+    .content_left &__episode-body-info > div:not(&__content-body-photo) {
+        padding: 0 20px;
+    }
+    .content_right &__episode-body-info {
+        width: 43%;
+        margin-top: 14px;
+    }
+    .content_left &__episode-body-info {
+        width: 100%;
+    }
+    .content_right &__content-body-photo {
+        width: 55%;
+        margin-top: 34px;
+        height: 640px;
+    }
+    .content_right &__content-body-photo img {
+        height: 100%;
+    }
+    .content_left &__content-body-photo {
+        width: 100%;
+        margin-top: 45px;
+        height: 378px;
+        overflow: hidden;
+        display: flex;
+    }
+    .content_left &__content-body-photo img {
+        width: 100%;
+        align-self: center;
+    }
+    &__content-body-date {
+        margin-bottom: 9px;
+    }
+    .content_right &__content-body-title {
+        margin-bottom: 34px;
+    }
+    .content_left &__content-body-title {
+        margin-bottom: 27px;
+    }
+    &__content-body-description {
+        line-height: 24px;
+        letter-spacing: 0px;
+    }
+    &__content-body-description:last-child {
+        margin-top: 11px;
+    }
+    .content_left &__content-body-description {
+        margin-top: 15px;
+    }
+
+}
+.text_upper {
+    text-transform: uppercase;
+}
+.text_11 {
+    font-size: 11.87px;
+}
+
+.text_left {
+    text-align: left;
+}
+
+.date_small {
+    font-size: 4.64px;
+    line-height: 6.96px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.title_small {
+    font-size: 10.44px;
+    line-height: 17.41px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.subtitle_small {
+    font-size: 5.22px;
+    line-height: 6.96px;
+    color: rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,10 @@
+.about-contacts {
+    &__container .contacts__content,
+    &__container .contacts__item {
+        height: 640px;
+    }
+
+    &__overlay-dark {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}

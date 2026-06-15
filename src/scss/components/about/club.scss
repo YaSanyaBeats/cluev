@@ -1,0 +1,13 @@
+.about-club {
+    &__gallery-bg {
+        position: absolute;
+        top: -475px;
+        left: -30px;
+        bottom: 0;
+        right: 0;
+        width: 140%;
+        height: auto;
+        max-width: none;
+        align-self: center;
+    }
+}
