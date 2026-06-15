@@ -52,6 +52,10 @@ function initSliders() {
         let slideTimerId = null;
         let swiperInstance = null;
 
+        function isVideoElement(element) {
+            return element instanceof HTMLVideoElement;
+        }
+
         function clearSlideTimer() {
             if (slideTimerId !== null) {
                 clearTimeout(slideTimerId);
@@ -62,8 +66,10 @@ function initSliders() {
         function pauseAllVideos() {
             clearSlideTimer();
             $('.hero__slider .hero__video').each(function () {
-                this.pause();
-                $(this).off('.heroAutoplay');
+                if (isVideoElement(this)) {
+                    this.pause();
+                    $(this).off('.heroAutoplay');
+                }
             });
         }
 
@@ -89,18 +95,21 @@ function initSliders() {
 
             if ($video.length) {
                 const video = $video[0];
-                video.loop = false;
-                video.currentTime = 0;
+                
+                if(isVideoElement(video)){
+                    video.loop = false;
+                    video.currentTime = 0;
 
-                $video.off('.heroAutoplay').on('ended.heroAutoplay', function () {
-                    swiperInstance.slideNext();
-                });
+                    $video.off('.heroAutoplay').on('ended.heroAutoplay', function () {
+                        swiperInstance.slideNext();
+                    });
 
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(scheduleImageSlide);
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(scheduleImageSlide);
+                    }
+                    return;
                 }
-                return;
             }
 
             scheduleImageSlide();
@@ -419,10 +428,222 @@ function initLookbookDebug() {
     });
 }
 
+
 document.addEventListener('DOMContentLoaded', (event) => {
     initSliders();
     initUiKit();
     initSmoothScroll();
     initModalMenu();
     initLookbookDebug();
+    initMap();
 })
+
+
+    
+let map;
+let currentMarkers = [];
+async function initMap() {
+    await ymaps3.ready;
+
+    const {
+        YMap,
+        YMapDefaultSchemeLayer,
+        YMapDefaultFeaturesLayer,
+        YMapMarker
+    } = ymaps3;
+
+    window.YMapMarker = YMapMarker;
+
+    map = new YMap(
+        document.getElementById('map'),
+        {
+            location: {
+                center: [37.6179, 55.7636],
+                zoom: 14
+            }
+        }
+    );
+
+    map.addChild(new YMapDefaultSchemeLayer());
+    map.addChild(new YMapDefaultFeaturesLayer());
+
+    renderMarkers('butik');
+
+    initLocations();
+
+    initTabs();
+
+    document.getElementById('map').classList.add('my-black-white-map');
+}
+
+function createMarker(item, type) {
+    const coordinates = item.dataset.coordinates
+        .split(',')
+        .map(Number);
+
+    const title =
+        item.querySelector('.boutique__list-item-title')
+            ?.textContent
+            .trim() || '';
+
+    const subtitle =
+        item.querySelector('.boutique__list-item-town')
+            ?.textContent
+            .trim() || '';
+
+    const markerElement = document.createElement('div');
+    markerElement.className = 'map-marker';
+
+    // ДИЛЕР
+    if (type === 'diler') {
+        markerElement.innerHTML = `
+            <div class="dealer-pin"></div>
+            <div class="map-card">
+                <div class="map-card__title">
+                    ${title}
+                    <span class="map-card__rating">★ 4.8</span>
+                </div>
+
+                <div class="map-card__subtitle">
+                    ${subtitle}
+                </div>
+            </div>
+        `;
+    } else {
+        markerElement.innerHTML = `
+            <div class="map-card">
+                <div class="map-card__title">
+                    ${title}
+                    <span class="map-card__rating">★ 4.8</span>
+                </div>
+
+                <div class="map-card__subtitle">
+                    ${subtitle}
+                </div>
+            </div>
+
+            <div class="map-card__image">
+                <img
+                    class="map-marker__icon"
+                    src="images/icons/logo-key.svg"
+                    alt=""
+                >
+            </div>
+        `;
+    }
+
+    return new YMapMarker(
+        { coordinates },
+        markerElement
+    );
+}
+
+function renderMarkers(tabId) {
+
+    currentMarkers.forEach(marker => {
+        map.removeChild(marker);
+    });
+
+    currentMarkers = [];
+
+    const items = document.querySelectorAll(
+        `#${tabId} .boutique__list-item`
+    );
+
+    items.forEach(item => {
+
+        const marker = createMarker(item, tabId);
+
+        map.addChild(marker);
+
+        currentMarkers.push(marker);
+    });
+
+    const firstItem = items[0];
+
+    if (firstItem) {
+
+        const coordinates =
+            firstItem.dataset.coordinates
+                .split(',')
+                .map(Number);
+
+        map.update({
+            location: {
+                center: coordinates,
+                zoom: 14,
+                duration: 300
+            }
+        });
+    }
+}
+
+function initTabs() {
+
+    const tabs =
+        document.querySelectorAll('.boutique__tabs-tab');
+
+    const contents =
+        document.querySelectorAll('.boutique__list-content');
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener('click', () => {
+
+            if (tab.classList.contains('active')) {
+                return;
+            }
+
+            tabs.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            tab.classList.add('active');
+
+            const target = tab.dataset.tab;
+
+            contents.forEach(content => {
+
+                content.classList.toggle(
+                    'active',
+                    content.id === target
+                );
+            });
+
+            renderMarkers(target);
+        });
+
+    });
+}
+
+function initLocations() {
+
+    document.addEventListener('click', (e) => {
+
+        const item = e.target.closest('.boutique__list-item');
+
+        if (!item) return;
+
+        const content = item.closest('.boutique__list-content');
+
+        content
+            .querySelectorAll('.boutique__list-item')
+            .forEach(el => {
+                el.classList.remove('active');
+            });
+
+        item.classList.add('active');
+
+        const coordinates = item.dataset.coordinates
+            .split(',')
+            .map(Number);
+
+        map.update({
+            location: {
+                center: coordinates,
+                zoom: 16,
+                duration: 500
+            }
+        });
+    });
+}
