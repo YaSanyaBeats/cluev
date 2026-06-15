@@ -6,6 +6,9 @@
     &__media {
         flex: 0 1 50%;
     }
+    &__media-mirror {
+        transform: scaleX(-1);
+    }
     &__img {
         aspect-ratio: 1;
         object-fit: cover;
