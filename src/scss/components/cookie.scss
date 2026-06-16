@@ -1,0 +1,32 @@
+.footer {
+    &__cookie {
+        position: fixed;
+        bottom: 41px;
+        width: 100%;
+        z-index: 999;
+    }
+    &__cookie-content {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(10, 10, 10, 1);
+        padding: 20px;
+        max-width: 63%;
+        margin: auto;
+    }
+    &__cookie-buttons {
+        display: flex;
+        gap: 12px;
+    }
+    &__cookie-text {
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 0px;
+        line-height: 18px;
+    }
+    &__cookie-accept {
+        width: 210px;
+    }
+    &__cookie-cancel {
+        width: 120px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
