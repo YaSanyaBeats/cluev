@@ -22,6 +22,7 @@
 /** Подключение стилей отдельных блоков и секций */
 @import 'components/header';
 @import 'components/footer';
+@import 'components/cookie';
 
 @import 'components/hero';
 @import 'components/product-card';
@@ -58,3 +59,5 @@
 @import 'components/boutique/hero';
 @import 'components/boutique/contacts';
 @import 'components/boutique/map';
+
+@import 'components/404/hero';
