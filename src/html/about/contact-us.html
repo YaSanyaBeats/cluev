@@ -40,8 +40,29 @@
                         </div>
                     </label>
                 </div>
-                <button class="contact-us__btn text_14 btn btn_dark" type="submit">Отправить заявку</button>
+                <a href="#thanks-modal" class="contact-us__btn text_14 btn btn_dark" type="submit" uk-toggle>Отправить заявку</a>
             </form>
         </div>
     </div>
 </section>
+<div id="thanks-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal__logo">
+            <img src="images/icons/logo-key.svg" alt="" uk-svg>
+        </div>
+
+        <h2 class="text_title text_12 text_upper uk-modal__title">заявка принята</h2>
+
+        <div class="text_title text_24 text_upper uk-modal__thanks">Спасибо!</div>
+
+        <div class="text_14 uk-modal__text">
+            Персональный менеджер свяжется с вами в ближайшее время, чтобы обсудить детали. Вы всегда можете продолжить знакомство с нашими коллекциями или вернуться к сервису
+        </div>
+
+        <button class="uk-button btn btn_dark uk-modal__close" type="button">
+            продолжить
+        </button>
+    </div>
+</div>
