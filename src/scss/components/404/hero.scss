@@ -1,0 +1,30 @@
+.page-404 {
+    &__404 {
+        color: rgba(115, 115, 115, 1);
+        line-height: 32px;
+        letter-spacing: 0;
+    }
+    &__title {
+        color: rgba(10, 10, 10, 1);
+    }
+    &__title-top {
+        margin-top: 7px;
+    }
+    &__subtitle {
+        color: rgba(64, 64, 64, 1);
+        line-height: 18px;
+        letter-spacing: 0px;
+        margin-top: 15px;
+    }
+    &__link {
+        margin-top: 34px;
+        width: 210px;
+    }
+}
+
+.color-black .header__link {
+    color: rgba(23, 23, 23, 1);
+}
+.color-black .header__menu-img path, .color-black .header__logo-icon path {
+    stroke: rgba(23, 23, 23, 1);
+}
