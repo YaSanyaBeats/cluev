@@ -1,5 +1,5 @@
 <section class="pb_40 pt_48 news-xl">
-    <a href="#" class="container news-xl__container">
+    <div href="#" class="container news-xl__container">
         <div class="news-xl__media boutique__media">
             <img class="news-xl__img news-xl__img_offset-center" src="@img/contacts1.png">
         </div>
@@ -12,12 +12,12 @@
             <div class="text_16 boutique__address">Москва, Петровка, 5</div>
             <div class="text_16 boutique__contacts boutique__phone">+7 (495) 149-07-07</div>
             <div class="text_16 boutique__contacts boutique__email">petrovka@cluev.ru</div>
-            <button class="btn boutique__btn news-xl__link">заказать звонок</button>
+            <a href="#callback-modal" uk-toggle class="btn boutique__btn news-xl__link">заказать звонок</a>
         </div>
-    </a>
+    </div>
 </section>
 <section class="pb_40 news-xl">
-    <a href="#" class="container news-xl__container">
+    <div href="#" class="container news-xl__container">
         <div class="news-xl__content boutique__content-right">
             <div class="boutique__logo-dark">
                 <img class="" src="images/icons/logo.svg" uk-svg>
@@ -27,10 +27,49 @@
             <div class="text_16 boutique__address">Кутузовский проспект, 2/1, стр 1</div>
             <div class="text_16 boutique__contacts boutique__phone">+7 (917) 591-21-18 </div>
             <div class="text_16 boutique__contacts boutique__email">radisson@cluev.ru</div>
-            <button class="btn boutique__btn news-xl__link">заказать звонок</button>
+            <a href="#callback-modal" uk-toggle class="btn boutique__btn news-xl__link">заказать звонок</a>
         </div>
         <div class="news-xl__media boutique__media">
             <img class="news-xl__img news-xl__img_offset-center" src="@img/contacts2.png">
         </div>
-    </a>
+    </div>
 </section>
+<div id="callback-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal__logo">
+            <img src="images/icons/logo-key.svg" alt="" uk-svg>
+        </div>
+
+        <form class="contact-us__form" action="#">
+            <div class="contact-us__form-inner">
+                <div class="contact-us__fields">
+                    <label class="input-field">
+                        <input class="text_14 input input-field__input" type="text" name="name" placeholder="Ваше имя *">
+                        <div class="text_14 input-field__error">Поле необходимо заполнить</div>
+                    </label>
+                    <label class="input-field">
+                        <input class="text_14 input input-field__input" type="tel" name="phone" placeholder="Номер телефона *">
+                        <div class="text_14 input-field__error">Поле необходимо заполнить</div>
+                    </label>
+                </div>
+                <label class="checkbox-field">
+                    <div class="checkbox checkbox-field__checkbox">
+                        <input type="checkbox" class="checkbox__input" name="policy">
+                        <div class="checkbox__fake">
+                            <img src="images/icons/check.svg" alt="" class="checkbox__icon">
+                        </div>
+                    </div>
+                    <div class="checkbox-field__content">
+                        <div class="text_14 checkbox-field__text">
+                            Я даю своё согласие на <a href="#">обработку персональных данных</a> и принимаю условия <a class="contact-us__policy-link" href="#">политики конфиденциальности</a>
+                        </div>
+                        <div class="text_14 checkbox-field__error">Поле необходимо заполнить</div>
+                    </div>
+                </label>
+            </div>
+            <a href="#" class="text_14 btn btn_dark contact-us__btn" type="submit" uk-toggle="" role="button">заказать звонок</a>
+        </form>
+    </div>
+</div>
