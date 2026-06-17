@@ -442,7 +442,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
 let map;
 let currentMarkers = [];
+async function loadYandexMaps() {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+
+        script.src =
+            'https://api-maps.yandex.ru/v3/?apikey=3829dc9d-d410-460d-a4f6-7865a0700e6a&lang=ru_RU';
+
+        script.onload = resolve;
+        script.onerror = reject;
+
+        document.head.append(script);
+    });
+}
 async function initMap() {
+    await loadYandexMaps();
     await ymaps3.ready;
 
     const {
